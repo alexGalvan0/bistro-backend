@@ -13,16 +13,23 @@ def getData(request):
         cuisine = Cuisine.objects.values()
         menu_item = Menu_item.objects.values()
 
-        
-        pp(category)
 
-        data = {
-            'title':list(menu_item)[0]['title'],
-            'price':list(menu_item)[0]['price'],
-            'cuisine': list(cuisine.filter(id = 1)),
-            'category': list(category.filter(id = 2)),
-            'spicy_level':list(menu_item)[0]['spicy_level'],
-      
-        }
+
+
 
         return JsonResponse({'data': data})
+
+
+
+
+
+
+        
+        # data = {
+        #     'title':list(menu_item)[1]['title'],
+        #     'price':list(menu_item)[1]['price'],
+        #     'cuisine': list(cuisine.filter(id = 1)),
+        #     'category': list(category.filter(id = 2)),
+        #     'spicy_level':list(menu_item)[1]['spicy_level'],
+      
+        # }
