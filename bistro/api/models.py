@@ -18,11 +18,12 @@ class Cuisine(models.Model):
 
 
 SPICY_LEVEL_CHOICES = (
-    ('1',1),
-    ('2',2),
-    ('3',3),
-    ('4',4),
-    ('5',5),
+    (0,0),
+    (1,1),
+    (2,2),
+    (3,3),
+    (4,4),
+    (5,5),
 )
 
 class Menu_item(models.Model):
@@ -31,7 +32,7 @@ class Menu_item(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
-    spicy_level = models.CharField(choices=SPICY_LEVEL_CHOICES, max_length=255)
+    spicy_level = models.IntegerField(choices=SPICY_LEVEL_CHOICES)
 
     def __str__(self):
         return self.title
