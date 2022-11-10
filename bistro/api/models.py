@@ -26,6 +26,9 @@ SPICY_LEVEL_CHOICES = (
     (5,5),
 )
 
+class Restaurant(models.Model):
+    pass
+
 class Menu_item(models.Model):
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField()
