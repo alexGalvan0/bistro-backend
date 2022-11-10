@@ -23,14 +23,15 @@ def getFriendlys(request, id):
 
     for item in menu_items:
         response = requests.get(f'http://www.themealdb.com/api/json/v1/1/search.php?s={item.title.replace(" ","_")}').json()
-        pp(response['meals'][0]['strInstructions'])
+
         JSON_DATA.append({
             'title': item.title,
             'price': item.price,
-            'description': item.description,
+            'description': response['meals'][0]['strInstructions'],
             'spicy_level': item.spicy_level,
             'category': model_to_dict(Category.objects.get(id=item.category_id)),
             'cuisine': model_to_dict(Cuisine.objects.get(id=item.cuisine_id)),
+            'image':response['meals'][0]['strMealThumb'],
             
         })
     return JsonResponse(JSON_DATA, safe=False)

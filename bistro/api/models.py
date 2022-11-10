@@ -39,7 +39,7 @@ class Menu_item(models.Model):
     title = models.CharField(
         max_length=255, unique=True, blank=False, null=False)
 
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     price = models.DecimalField(
         max_digits=6, decimal_places=2, blank=False, null=False)
