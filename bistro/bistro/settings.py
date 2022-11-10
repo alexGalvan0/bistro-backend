@@ -27,9 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+CORS_ORGIN_WHITELIST = [
+    "https://alexgalvan0.github.io/react-restaurant/"
+]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://.*\.gitpod\.io$",
+    r"^https://alexgalvan0.github.io",
 ]
 # Application definition
 
