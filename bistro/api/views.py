@@ -30,6 +30,7 @@ def getFriendlys(request, id):
             desc = response['meals'][0]['strInstructions']
 \
         JSON_DATA.append({
+            'id':item.id,
             'title': item.title,
             'price': item.price,
             'description': desc,
