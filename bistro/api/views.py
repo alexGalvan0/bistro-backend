@@ -61,9 +61,17 @@ def csv_view(request, id):
         headers={'Content-Disposition': 'attachment; filename="somefilename.csv"'},
     )
     writer = csv.writer(response)
-    writer.writerow(['title', 'price', 'description', 'spicy_level'])
+    writer.writerow(['title', 'price', 'description',
+                    'spicy_level', 'category', 'cuisine', 'image', 'video'])
     for item in menu_items:
-        writer.writerow([item.title, item.price, item.description,
-                        item.spicy_level])
+        res = requests.get(
+            f'http://www.themealdb.com/api/json/v1/1/search.php?s={item.title.replace(" ","_")}').json()
+        pp
+        if item.description != '':
+            desc = item.description
+        else:
+            desc = res['meals'][0]['strInstructions']
+        writer.writerow([item.title, item.price, desc,
+                        item.spicy_level, item.category, item.cuisine, res['meals'][0]['strMealThumb'], res['meals'][0]['strYoutube']])
 
     return response
