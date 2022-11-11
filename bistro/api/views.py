@@ -58,7 +58,7 @@ def csv_view(request, id):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(
         content_type='text/csv',
-        headers={'Content-Disposition': 'attachment; filename="somefilename.csv"'},
+        headers={'Content-Disposition': 'attachment; filename="RestaurantMenu.csv"'},
     )
     writer = csv.writer(response)
     writer.writerow(['title', 'price', 'description',
