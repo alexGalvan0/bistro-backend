@@ -42,7 +42,7 @@ def getFriendlys(request, id):
             
         })
     if len(JSON_DATA) == 0:
-        return HttpResponse('<h1>NO Response<h1>')
+        return HttpResponse('<h1 style="color:red">NO Response</h1>')
     else:
         return JsonResponse(JSON_DATA, safe=False)
 
