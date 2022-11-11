@@ -35,4 +35,9 @@ def getFriendlys(request, id):
             'video':response['meals'][0]['strYoutube']
             
         })
-    return JsonResponse(JSON_DATA, safe=False)
+    if len(JSON_DATA) == 0:
+        return HttpResponse('<h1>NO Response<h1>')
+    else:
+        return JsonResponse(JSON_DATA, safe=False)
+
+
