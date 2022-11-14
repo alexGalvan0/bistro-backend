@@ -35,7 +35,7 @@ class Restaurant(models.Model):
         return self.title
 
 
-class Menu_item(models.Model):
+class MenuItem(models.Model):
     title = models.CharField(
         max_length=255, unique=True, blank=False, null=False)
     description = models.TextField(blank=True)
