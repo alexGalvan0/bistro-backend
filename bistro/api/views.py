@@ -1,9 +1,11 @@
-from django.contrib.auth.models import User, Group
-from .models import MenuItem
-from rest_framework import viewsets
-from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer, MenuItemSerializer
+from django.contrib.auth.models import Group, User
 from django.shortcuts import get_list_or_404, get_object_or_404
+from rest_framework import permissions, viewsets
+
+from .models import MenuItem
+from .serializers import (CategorySerializer, RestaurantSerializer,
+                          CuisineSerializer, GroupSerializer,
+                          MenuItemSerializer, UserSerializer)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,13 +29,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 class MenuItemViewSet(viewsets.ModelViewSet):
     serializer_class = MenuItemSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = MenuItem.objects.all()
+    
 
-    def get_object(self, queryset=None, **kwargs):
-        item = self.kwargs.get('pk')
-        return get_object_or_404(MenuItem, title=item)
+    # def get_object(self, queryset=None, **kwargs):
+    #     item = self.kwargs.get('pk')
+    #     return get_object_or_404(MenuItem, title=item)
 
-    def get_queryset(self):
-        return MenuItem.objects.all()
+    # def get_queryset(self):
+    #     return MenuItem.objects.all()
 
 
 #   import json

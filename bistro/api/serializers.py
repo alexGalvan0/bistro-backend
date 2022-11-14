@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from .models import MenuItem
+from .models import MenuItem, Category, Cuisine, Restaurant
 from rest_framework import serializers
 
 
@@ -15,7 +15,30 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'name']
 
 
-class MenuItemSerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['title']
+
+
+class CuisineSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Cuisine
+        fields = ['title']
+
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['title']
+
+
+class MenuItemSerializer(serializers.ModelSerializer):
+    cuisine = CuisineSerializer()
+    restaurant = RestaurantSerializer()
+    category = CategorySerializer()
+
     class Meta:
         model = MenuItem
-        fields = ['id','title', 'description', 'price']
+        fields = ['title', 'description', 'price',
+                  'spicy_level', 'category', 'cuisine', 'restaurant']

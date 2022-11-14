@@ -7,7 +7,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'menuItems', views.MenuItemViewSet, basename='MenuItem')
+router.register(r'menuItems', views.MenuItemViewSet)
 
 
 # Wire up our API using automatic URL routing.
