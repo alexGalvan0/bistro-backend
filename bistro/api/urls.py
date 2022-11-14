@@ -1,7 +1,17 @@
-from django.urls import path
+from django.contrib import admin
+
+from django.urls import include, path
+from rest_framework import routers
 from . import views
 
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'menuItems', views.MenuItemViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('json/<int:id>', views.getFriendlys, name='restaurant data json'),
-    path('csv/<int:id>', views.csv_view, name='restaurant data csv'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
